@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Экзамен</title> //owfjsfowejfjwjfoiwjiofj
+        <style>
+            canvas {
+                border: black solid 5px;
+            }
+        </style>
+    </head>
+    <body>
+        <canvas id="ctx" width="600px" height="200px"></canvas>
+        <script>
+            let ctx = document.getElementById("ctx").getContext("2d");
+
+            let p=":";
+            let comfort = 60;
+            function rect() {
+                ctx.beginPath();
+                ctx.fillStyle="black";
+                ctx.strokeStyle="grey";
+                ctx.lineWidth=20;
+                ctx.rect(10, 10, 580, 180);
+                ctx.stroke();
+                ctx.fill();
+                ctx.closePath();
+                ctx.font="6em Courier New";
+                ctx.fillStyle="green";
+                let date = new Date();
+                let h=date.getHours();
+                let min=date.getMinutes();
+                let sec=date.getSeconds();
+                    if (h < 10) {
+                        h= "0" + h;
+                    }
+                    if (min < 10) {
+                        min= "0" + min;
+                    }
+                    if (sec < 10) {
+                        sec= "0" + sec;
+                    }
+                    if (comfort != sec) {
+                        if (p==":") {
+                            p=" ";
+                        } else {
+                            p=":";
+                        }
+                    }
+                    
+                ctx.fillText(h + p + min + p + sec, 70, 130);
+                comfort = sec;
+            }
+            
+            function animation() {
+                rect();
+                setTimeout(animation, 500);
+            }
+            animation();
+        </script>
+    </body>
+</html>
